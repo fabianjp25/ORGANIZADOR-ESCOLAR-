@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Aula | Iniciar sesión</title>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600&display=swap');
+		:root { --ink:#19312f; --muted:#6a7d78; --cream:#f6f2e9; --mint:#cfe5d7; --coral:#ef876e; --line:#dce5de; }
+		* { box-sizing:border-box; }
+		body { margin:0; min-height:100vh; color:var(--ink); background:var(--cream); font-family:'DM Sans', sans-serif; }
+		.page { min-height:100vh; display:grid; grid-template-columns:minmax(340px, .9fr) minmax(420px, 1.1fr); }
+		.intro { padding:clamp(32px, 6vw, 88px); display:flex; flex-direction:column; justify-content:space-between; background:var(--ink); color:#f9f6ee; position:relative; overflow:hidden; }
+		.intro::after { content:''; position:absolute; width:360px; height:360px; border:1px solid rgba(255,255,255,.2); border-radius:50%; right:-130px; bottom:-80px; box-shadow:0 0 0 34px rgba(255,255,255,.06), 0 0 0 68px rgba(255,255,255,.04); }
+		.brand { font-weight:700; letter-spacing:.08em; text-transform:uppercase; font-size:14px; }
+		.intro h1 { max-width:500px; margin:0 0 20px; font:600 clamp(44px, 6vw, 76px)/.98 Fraunces, serif; letter-spacing:-.04em; }
+		.intro p { max-width:420px; margin:0; color:#bdd1ca; font-size:17px; line-height:1.6; }
+		.quote { max-width:300px; color:#f3c1a8; font-size:13px; line-height:1.5; }
+		.login-wrap { display:flex; align-items:center; justify-content:center; padding:32px; }
+		.login-card { width:min(100%, 420px); }
+		.eyebrow { color:var(--coral); font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; }
+		h2 { margin:12px 0 9px; font:600 42px/1.05 Fraunces, serif; letter-spacing:-.03em; }
+		.sub { color:var(--muted); margin:0 0 34px; line-height:1.5; }
+		label { display:block; margin:19px 0 8px; font-size:13px; font-weight:700; }
+		input { width:100%; border:1px solid var(--line); border-radius:8px; padding:15px; color:var(--ink); background:#fffdf8; font:inherit; outline:none; }
+		input:focus { border-color:var(--coral); box-shadow:0 0 0 3px rgba(239,135,110,.16); }
+		button { border:0; border-radius:8px; padding:15px 20px; background:var(--coral); color:#fff; cursor:pointer; font:700 14px 'DM Sans', sans-serif; transition:transform .2s, background .2s; }
+		button:hover { background:#df715b; transform:translateY(-1px); }
+		.submit { width:100%; margin-top:27px; }
+		.note { margin-top:18px; color:var(--muted); font-size:12px; text-align:center; }
+		.error { min-height:18px; margin-top:10px; color:#bb4d3e; font-size:13px; }
+		@media (max-width:760px) { .page { grid-template-columns:1fr; } .intro { min-height:42vh; padding:32px; } .intro h1 { font-size:48px; } .quote { display:none; } .login-wrap { padding:40px 24px; } }
+	</style>
+</head>
+<body>
+	<main class="page">
+		<section class="intro">
+			<div class="brand">Aula / organizador escolar</div>
+			<div><h1>Más calma para cada jornada.</h1><p>Planifica clases, actividades y pendientes desde un solo lugar, pensado para el ritmo real del aula.</p></div>
+			<div class="quote">“Lo que se organiza, también se disfruta.”</div>
+		</section>
+		<section class="login-wrap">
+			<form class="login-card" id="loginForm">
+				<div class="eyebrow">Bienvenida de vuelta</div>
+				<h2>Entrar al aula</h2>
+				<p class="sub">Accede a tu espacio de organización.</p>
+				<label for="email">Correo electrónico</label>
+				<input id="email" name="email" type="email" placeholder="maestra@ejemplo.com" required>
+				<label for="password">Contraseña</label>
+				<input id="password" name="password" type="password" placeholder="••••••••" minlength="4" required>
+				<div class="error" id="error" role="alert"></div>
+				<button class="submit" type="submit">Entrar a mi organizador <span aria-hidden="true">→</span></button>
+				<div class="note">Demo local: cualquier correo y contraseña de 4 caracteres funcionan.</div>
+			</form>
+		</section>
+	</main>
+	<script>
+		document.getElementById('loginForm').addEventListener('submit', function (event) {
+			event.preventDefault();
+			const email = document.getElementById('email').value.trim();
+			const password = document.getElementById('password').value;
+			const error = document.getElementById('error');
+			if (!email || password.length < 4) { error.textContent = 'Revisa tus datos para continuar.'; return; }
+			localStorage.setItem('aulaUser', email);
+			window.location.href = 'dashboard.html';
+		});
+	</script>
+</body>
+</html>
