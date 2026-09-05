@@ -1,69 +1,135 @@
 <!doctype html>
 <html lang="es">
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Aula | Iniciar sesión</title>
-	<style>
-		@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600&display=swap');
-		:root { --ink:#19312f; --muted:#6a7d78; --cream:#f6f2e9; --mint:#cfe5d7; --coral:#ef876e; --line:#dce5de; }
-		* { box-sizing:border-box; }
-		body { margin:0; min-height:100vh; color:var(--ink); background:var(--cream); font-family:'DM Sans', sans-serif; }
-		.page { min-height:100vh; display:grid; grid-template-columns:minmax(340px, .9fr) minmax(420px, 1.1fr); }
-		.intro { padding:clamp(32px, 6vw, 88px); display:flex; flex-direction:column; justify-content:space-between; background:var(--ink); color:#f9f6ee; position:relative; overflow:hidden; }
-		.intro::after { content:''; position:absolute; width:360px; height:360px; border:1px solid rgba(255,255,255,.2); border-radius:50%; right:-130px; bottom:-80px; box-shadow:0 0 0 34px rgba(255,255,255,.06), 0 0 0 68px rgba(255,255,255,.04); }
-		.brand { font-weight:700; letter-spacing:.08em; text-transform:uppercase; font-size:14px; }
-		.intro h1 { max-width:500px; margin:0 0 20px; font:600 clamp(44px, 6vw, 76px)/.98 Fraunces, serif; letter-spacing:-.04em; }
-		.intro p { max-width:420px; margin:0; color:#bdd1ca; font-size:17px; line-height:1.6; }
-		.quote { max-width:300px; color:#f3c1a8; font-size:13px; line-height:1.5; }
-		.login-wrap { display:flex; align-items:center; justify-content:center; padding:32px; }
-		.login-card { width:min(100%, 420px); }
-		.eyebrow { color:var(--coral); font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; }
-		h2 { margin:12px 0 9px; font:600 42px/1.05 Fraunces, serif; letter-spacing:-.03em; }
-		.sub { color:var(--muted); margin:0 0 34px; line-height:1.5; }
-		label { display:block; margin:19px 0 8px; font-size:13px; font-weight:700; }
-		input { width:100%; border:1px solid var(--line); border-radius:8px; padding:15px; color:var(--ink); background:#fffdf8; font:inherit; outline:none; }
-		input:focus { border-color:var(--coral); box-shadow:0 0 0 3px rgba(239,135,110,.16); }
-		button { border:0; border-radius:8px; padding:15px 20px; background:var(--coral); color:#fff; cursor:pointer; font:700 14px 'DM Sans', sans-serif; transition:transform .2s, background .2s; }
-		button:hover { background:#df715b; transform:translateY(-1px); }
-		.submit { width:100%; margin-top:27px; }
-		.note { margin-top:18px; color:var(--muted); font-size:12px; text-align:center; }
-		.error { min-height:18px; margin-top:10px; color:#bb4d3e; font-size:13px; }
-		@media (max-width:760px) { .page { grid-template-columns:1fr; } .intro { min-height:42vh; padding:32px; } .intro h1 { font-size:48px; } .quote { display:none; } .login-wrap { padding:40px 24px; } }
-	</style>
-</head>
-<body>
-	<main class="page">
-		<section class="intro">
-			<div class="brand">Aula / organizador escolar</div>
-			<div><h1>Más calma para cada jornada.</h1><p>Planifica clases, actividades y pendientes desde un solo lugar, pensado para el ritmo real del aula.</p></div>
-			<div class="quote">“Lo que se organiza, también se disfruta.”</div>
-		</section>
-		<section class="login-wrap">
-			<form class="login-card" id="loginForm">
-				<div class="eyebrow">Bienvenida de vuelta</div>
-				<h2>Entrar al aula</h2>
-				<p class="sub">Accede a tu espacio de organización.</p>
-				<label for="email">Correo electrónico</label>
-				<input id="email" name="email" type="email" placeholder="maestra@ejemplo.com" required>
-				<label for="password">Contraseña</label>
-				<input id="password" name="password" type="password" placeholder="••••••••" minlength="4" required>
-				<div class="error" id="error" role="alert"></div>
-				<button class="submit" type="submit">Entrar a mi organizador <span aria-hidden="true">→</span></button>
-				<div class="note">Demo local: cualquier correo y contraseña de 4 caracteres funcionan.</div>
-			</form>
-		</section>
-	</main>
-	<script>
-		document.getElementById('loginForm').addEventListener('submit', function (event) {
-			event.preventDefault();
-			const email = document.getElementById('email').value.trim();
-			const password = document.getElementById('password').value;
-			const error = document.getElementById('error');
-			if (!email || password.length < 4) { error.textContent = 'Revisa tus datos para continuar.'; return; }
-			localStorage.setItem('aulaUser', email);
-			window.location.href = 'dashboard.html';
-		});
-	</script>
-</body>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<title>BIENVENIDA NAYELIS </title>
+		<style>
+			:root{
+				--bg-start:#fff0f6;
+				--bg-end:#fff5f8;
+				--card:#ffffff;
+				--accent:#ec4899;
+				--accent-dark:#be185d;
+				--muted:#7a4b5f;
+				--input-border:#f3d6e6;
+				--error:#9b1c31;
+				font-family: Poppins, Inter, system-ui, Arial, sans-serif;
+				color: #2b1223;
+			}
+
+			html,body{height:100%;margin:0}
+			.center{min-height:100%;display:flex;align-items:center;justify-content:center;padding:24px;background:linear-gradient(135deg,var(--bg-start),var(--bg-end))}
+			.card{max-width:760px;width:100%;background:var(--card);border-radius:12px;box-shadow:0 12px 30px rgba(236,72,153,0.12);padding:20px}
+			.split{display:flex;gap:20px;align-items:stretch}
+			.image-panel{flex:1;min-width:300px;display:flex;align-items:center;justify-content:center;padding:6px}
+			.image-panel img{width:100%;height:100%;max-height:420px;object-fit:cover;border-radius:10px}
+			.form-panel{flex:1;min-width:300px;display:flex;flex-direction:column;justify-content:center;padding:8px}
+			h1{font-size:20px;margin:0 0 14px;color:var(--accent-dark)}
+			label{display:block;font-size:13px;margin:0 0 6px;color:var(--muted)}
+			.form-group{margin-bottom:14px}
+			input[type=text],input[type=password]{width:100%;padding:10px 12px;border:1px solid var(--input-border);border-radius:10px;font-size:14px;background:#fff;box-sizing:border-box}
+			.password-row{display:flex;gap:8px;align-items:center}
+			.toggle-btn{padding:8px 10px;border-radius:8px;border:1px solid rgba(230,200,220,0.8);background:#fff;color:var(--accent-dark);white-space:nowrap}
+			.actions{display:flex;align-items:center;justify-content:center;margin-top:18px;gap:12px}
+			button{background:var(--accent);color:#fff;border:0;padding:10px 14px;border-radius:10px;font-weight:600;cursor:pointer;box-shadow:0 6px 18px rgba(236,72,153,0.12)}
+			button:hover{background:var(--accent-dark)}
+			button[disabled]{opacity:.6;cursor:not-allowed}
+			.small{font-size:13px;color:var(--muted)}
+			a{color:var(--accent-dark);text-decoration:none;font-weight:600}
+			.toggle-btn{padding:8px;border-radius:8px;border:1px solid rgba(230,200,220,0.8);background:#fff;color:var(--accent-dark)}
+			.error{color:var(--error);font-size:13px;margin-top:8px}
+			.footer{margin-top:18px;font-size:13px;color:#7a5b6b;text-align:center}
+			@media (max-width:700px){
+				.split{flex-direction:column}
+				.image-panel img{max-height:240px}
+				.card{padding:16px}
+			}
+		</style>
+	</head>
+	<body>
+		<main class="center">
+			<section class="card" aria-labelledby="login-title">
+				<div class="split">
+					<div class="image-panel">
+						<div class="image-panel">
+							<!-- Coloca aquí la ruta de acceso a tu imagen JPEG -->
+							<img src="C:\Users\jvinas\Desktop\PLANEADOR NAYELIS\img\imagen login.jpg" alt="Imagen decorativa" />
+						</div>
+					</div>
+					<div class="form-panel">
+						<h1 id="login-title">Inicia sesión</h1>
+						<form id="loginForm" novalidate>
+							<div class="form-group">
+								<label for="user">Usuario</label>
+								<input id="user" name="user" type="text" inputmode="text" autocomplete="username" required />
+							</div>
+
+							<div class="form-group">
+								<label for="pass">Contraseña</label>
+								<div class="password-row">
+									<input id="pass" name="pass" type="password" autocomplete="current-password" required />
+									
+								</div>
+							</div>
+
+							
+
+							<div class="error" id="error" role="alert" aria-live="polite" style="display:none"></div>
+
+							
+							<div class="actions">
+								<button id="submitBtn" type="submit">Entrar</button>
+                                
+							</div>
+							</div>
+						</form>
+						
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<script>
+			const form = document.getElementById('loginForm');
+			const userInput = document.getElementById('user');
+			const passInput = document.getElementById('pass');
+			const errorEl = document.getElementById('error');
+			const toggle = document.getElementById('toggle');
+
+			// Restore remembered username
+			try{
+				const saved = localStorage.getItem('pn_username');
+				if(saved) userInput.value = saved;
+			}catch(e){}
+
+			toggle.addEventListener('click', ()=>{
+				const shown = passInput.type === 'text';
+				passInput.type = shown ? 'password' : 'text';
+				toggle.textContent = shown ? 'Mostrar' : 'Ocultar';
+			});
+
+			form.addEventListener('submit', (e)=>{
+				e.preventDefault();
+				errorEl.style.display = 'none';
+				const user = userInput.value.trim();
+				const pass = passInput.value;
+
+				if(!user){ showError('Introduce tu usuario o correo'); return }
+				if(!pass){ showError('Introduce tu contraseña'); return }
+
+				// basic example validation (replace with server auth in production)
+				// Accept any non-empty credentials and redirect to frontend.html
+				try{
+					if(document.getElementById('remember').checked) localStorage.setItem('pn_username', user);
+					else localStorage.removeItem('pn_username');
+				}catch(e){}
+
+				window.location.href = 'frontend.html';
+			});
+
+			function showError(msg){ errorEl.textContent = msg; errorEl.style.display = 'block' }
+		</script>
+	</body>
 </html>
+
